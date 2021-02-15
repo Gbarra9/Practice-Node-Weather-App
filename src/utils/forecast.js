@@ -1,7 +1,7 @@
 const request = require('postman-request');
 const dotenv = require('dotenv').config().parsed;
 const WEATHERSTACK_API_KEY =
-  process.env.WEATHERSTACK_API_KEY || process.env.WEATHERSTACK_API_KEY;
+  dotenv.WEATHERSTACK_API_KEY || process.env.WEATHERSTACK_API_KEY;
 
 const forecast = (latitude, longitude, callback) => {
   const url = `http://api.weatherstack.com/current?access_key=${WEATHERSTACK_API_KEY}&query=${encodeURIComponent(
