@@ -1,13 +1,13 @@
 const request = require('postman-request');
+const dotenv = require('dotenv').config().parsed;
 
 const forecast = (latitude, longitude, callback) => {
-  console.log(latitude, longitude);
+  const url = `http://api.weatherstack.com/current?access_key=${
+    dotenv.WEATHERSTACK_API_KEY
+  }&query=${encodeURIComponent(latitude)},${encodeURIComponent(
+    longitude
+  )}=&units=f`;
 
-  const url = `http://api.weatherstack.com/current?access_key=API_KEY&query=${encodeURIComponent(
-    latitude
-  )},${encodeURIComponent(longitude)}=&units=f`;
-
-  console.log(url);
   request({ url, json: true }, (error, { body }) => {
     if (error) {
       callback(`Unable to connect to weatherstack!`, undefined);
@@ -17,7 +17,6 @@ const forecast = (latitude, longitude, callback) => {
         undefined
       );
     } else {
-      console.log(body);
       callback(
         undefined,
         `${body.current.weather_descriptions}. It is currently ${body.current.temperature} degrees out. It feels like ${body.current.feelslike} degrees outside.`
