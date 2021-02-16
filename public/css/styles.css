@@ -30,6 +30,11 @@ header a {
   text-decoration: none;
 }
 
+p a {
+  color: #333;
+  text-decoration: none;
+}
+
 input {
   border: 1px solid #ccc;
   padding: 8px;
